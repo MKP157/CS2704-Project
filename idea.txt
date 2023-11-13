@@ -1,0 +1,18 @@
+Do more "liberal"/left-leaning countries use more open-source software?
+
+TODO:
+-> Define what metric makes a country more "liberal"
+	
+	Civil Liberties Index?
+		https://ourworldindata.org/grapher/civil-liberties-index-eiu
+		https://ourworldindata.org/grapher/liberal-political-institutions-index
+	
+-> Compare open source contribution and usage by country
+	Github open-source commits by country
+		Data:  https://github.com/johanneswachs/OSS_Geography_Data/blob/main/data/world_countries_2021.csv
+		Paper: https://www.sciencedirect.com/science/article/pii/S0040162522000105#sec0015
+	
+	Open-source software usage in elections
+		https://www.idea.int/data-tools/data/question?question_id=9357&database_theme=327
+		
+	
