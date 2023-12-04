@@ -2,12 +2,12 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 import pandas as pd
 
-def mattplot() :
+def mattplot( path ) :
     ###########################################################
     # Part 2 : Plot each table as regressions                 #
     ###########################################################
 
-    df = pd.read_parquet('../data/final.parquet')
+    df = pd.read_parquet(path)
 
     plt.figure()
     sb.regplot(order=2,

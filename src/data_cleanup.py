@@ -16,6 +16,7 @@ def data_cleanup () :
     df_eiu = pd.read_parquet('../data/eiu_cleaned.parquet')
 
     df_eiu = df_eiu.query("`year` == 2021")
+    df_eiu.drop(columns=['year'])
     print(df_eiu)
 
     # Import GitHub csv, convert to parquet, and filter for countries and contributors
