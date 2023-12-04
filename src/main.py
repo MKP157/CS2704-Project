@@ -10,7 +10,7 @@ CURRENT_DIR = os.getcwd()
 ###########################################################
 # Import EIU csv, convert to parquet, and filter for required columns
 # Then query for years as a filter
-conv('eiu_cleaned.csv',
+conv('../data/eiu_cleaned.csv',
      'country_name',
      'year',
      'democracy_eiu',
@@ -18,17 +18,17 @@ conv('eiu_cleaned.csv',
      'pol_part_eiu',
      'dem_culture_eiu')
 
-df_eiu = pd.read_parquet('eiu_cleaned.parquet')
+df_eiu = pd.read_parquet('../data/eiu_cleaned.parquet')
 
 df_eiu = df_eiu.query("`year` == 2021")
 print(df_eiu)
 
 # Import GitHub csv, convert to parquet, and filter for countries and contributors
-conv('world_countries_2021.csv',
+conv('../data/world_countries_2021.csv',
      'country',
      'contributors_per_100k')
 
-df_git = pd.read_parquet('world_countries_2021.parquet')
+df_git = pd.read_parquet('../data/world_countries_2021.parquet')
 df_git = df_git.query("`country` != 'Montenegro'")
 
 print(df_git)
