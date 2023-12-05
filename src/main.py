@@ -1,10 +1,10 @@
-from data_cleanup import data_cleanup
-from data_calc import mattplot
-import test_regress
+from data_cleanup import cleanup
+from data_plot import mattplot
+from test_regress import regress_performance
 
 path = '../data/final.parquet'
 
 # Main Execution Script
-data_cleanup()
+cleanup()
 mattplot(path)
-test_regress.regress_performance(path, 5000)
+regress_performance(path, 5000)
