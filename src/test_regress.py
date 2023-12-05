@@ -2,7 +2,7 @@ from sklearn.utils import shuffle
 import pandas as pd
 from sklearn.linear_model import LinearRegression
 
-def regress( path, n ) :
+def regress_performance( path, n ) :
 
     labels = ['democracy_eiu', 'elect_freefair_eiu', 'pol_part_eiu', 'dem_culture_eiu']
 
@@ -12,13 +12,17 @@ def regress( path, n ) :
             'dem_culture_eiu' : []
     }
 
+    df_orig = pd.read_parquet(path)
+
     for i in range(n) :
         #print("try #" + str(i))
-        df = pd.read_parquet( path )
-        df = shuffle( df )
+
+        df = shuffle( df_orig )
 
         df_train = df.sample( frac = 0.5 ).dropna()
         df_test = df.drop( df_train.index ).dropna()
+
+        print("\n[iteration #" + str(i) + "]")
 
         for t in labels :
             # train
@@ -36,9 +40,11 @@ def regress( path, n ) :
                   ":" +
                   str( model.score( x_test, y_test ) ) )
             '''
+            score = model.score( x_test, y_test )
 
-            res[t].append(model.score( x_test, y_test ))
+            res[t].append(score)
+            print(t + ": r2=" + str(score))
 
     for t in labels:
-        print("Average for " + t + ":" + str( sum(res[t]) / len(res[t]) ))
-
+        print("\n===============================================")
+        print("Average for " + t + ":\n" + str( sum(res[t]) / len(res[t]) ))
