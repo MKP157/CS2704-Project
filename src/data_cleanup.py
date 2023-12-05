@@ -24,7 +24,10 @@ def data_cleanup () :
          'country',
          'contributors_per_100k')
 
-    df_git = pd.read_parquet('../data/world_countries_2021.parquet')
+    # .dropna() helps remove NaN values. Important for regression calcs.
+    df_git = pd.read_parquet('../data/world_countries_2021.parquet').dropna()
+
+    # * Montenegro was an obvious outlier in the GitHub data.
     df_git = df_git.query("`country` != 'Montenegro'")
 
     print(df_git)
@@ -41,6 +44,6 @@ def data_cleanup () :
 # Convert a CSV file to Parquet.
 # First arg is path to CSV, all else are names of columns to include
 def conv( *args ) :
-    df = pd.read_csv(args[0])
+    df = pd.read_csv(args[0]).dropna()
     df = df.filter(items=[x for x in args[1:]])
     df.to_parquet(args[0].split('.csv')[0] + '.parquet', compression='snappy')
